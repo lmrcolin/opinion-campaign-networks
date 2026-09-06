@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\titleformat{\section}{\normalfont\bfseries\large}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=2pt}
+\pagestyle{empty}
+\setlength{\parskip}{5pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=2em
+
+\begin{document}
+
+\begin{center}
+	{\small SMAII, Redes Complejas Multicapa}\\[6pt]
+	{\Large\bfseries Propuesta de proyecto semestral}\\[3pt]
+	{\normalsize Efecto de una campaña sobre la opinión colectiva y predicción de su conveniencia}\\[4pt]
+	{\small Septiembre de 2026}
+\end{center}
+
+\section*{Integrantes del equipo}
+\begin{itemize}
+    \item Jorge Miyoshi Mikami Alonso
+    \item Luis Manuel Reyes Colín 
+\end{itemize}
+
+\section*{Planteamiento}
+
+El proyecto parte de una decisión concreta que enfrenta cualquier emisor de un mensaje
+masivo, ya sea una campaña de marketing, un anuncio político o una publicación en redes.
+La intención suele ser desplazar la opinión del público hacia una posición determinada,
+pero el resultado no siempre acompaña a la intención. El mensaje puede lograr su objetivo,
+puede resultar irrelevante o puede provocar el efecto contrario y consolidar al grupo que
+se le opone. Nuestro interés es determinar si ese desenlace puede anticiparse antes de
+que la campaña se lance.
+
+Para abordarlo simularemos una población conectada en la que cada individuo sostiene una
+opinión y solo se deja influir por quienes piensan de manera suficientemente parecida.
+Sobre esa base incorporaremos el estímulo externo que representa la campaña y el sesgo
+que introducen las plataformas digitales al favorecer el contacto entre personas
+afines. Analizaremos hacia dónde evoluciona el sistema según la apertura de la población,
+la intensidad del sesgo, la frecuencia con la que se repite el mensaje y qué tan extrema
+es la posición que promueve.
+
+El resultado que buscamos es una caracterización de las condiciones bajo las cuales
+conviene lanzar la campaña y aquellas en las que resulta desaconsejable. Consideramos
+también una segunda capa en la que la opinión se traduzca en una conducta observable,
+como una compra o un voto, dado que ese es el desenlace que finalmente interesa al emisor.
+
+\section*{Metodología}
+
+El trabajo se apoyará principalmente en simulación sobre redes, primero sintéticas y
+después, en la medida en que consigamos datos adecuados, sobre una red real. Recorreremos
+distintas combinaciones de parámetros y evaluaremos el estado final de la población,
+distinguiendo entre consenso, polarización y fragmentación.
+
+Dado el volumen de escenarios que esto genera, planeamos apoyarnos en aprendizaje
+automático para clasificarlos y para entrenar un modelo que, a partir de las condiciones
+iniciales y las características del mensaje, prediga si la campaña resultará favorable o
+contraproducente. Este sería el principal entregable del proyecto.
+
+\section*{Referencias de partida}
+
+\begin{itemize}
+	\item V. Pansanella, A. Sîrbu, J. Kertesz and G. Rossetti, 2023.
+	      \emph{Mass media impact on opinion evolution in biased digital environments: a bounded confidence model}.
+	      Scientific Reports \textbf{13}, 14600.
+
+	\item L. Yin, J. Chen, F. Gao and X. Wu, 2025.
+	      \emph{Coevolution of opinion and consumption behavior under a two-layer network framework}.
+	      Physica A \textbf{680}, 131020.
+\end{itemize}
+\end{document}

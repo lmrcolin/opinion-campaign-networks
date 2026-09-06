@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.bbl
+*.blg
+*.toc
+*.fls
+*.fdb_latexmk
+
+# Data and sweep outputs
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+results/sweeps/*
+!results/sweeps/.gitkeep
+
+# Report PDFs are build artifacts; coursework PDFs are versioned
+report/**/*.pdf
