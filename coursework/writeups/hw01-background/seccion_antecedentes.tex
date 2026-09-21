@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{mathptmx}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\titleformat{\section}{\normalfont\bfseries\large}{}{0pt}{}
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+\titleformat{\subsection}{\normalfont\bfseries}{}{0pt}{}
+\titlespacing*{\subsection}{0pt}{8pt}{2pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=2pt}
+\setlist[enumerate]{leftmargin=1.6em,itemsep=3pt,topsep=3pt}
+\pagestyle{empty}
+\setlength{\parskip}{5pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=2em
+
+\begin{document}
+
+\begin{center}
+	{\small SMAII, Redes Complejas Multicapa}\\[6pt]
+	{\Large\bfseries Proyecto final: sección de Antecedentes}\\[3pt]
+	{\normalsize Efecto de una campaña sobre la opinión colectiva y predicción de su conveniencia}\\[4pt]
+	{\small Septiembre de 2026}
+\end{center}
+
+\section*{Integrantes del equipo}
+\begin{itemize}
+	\item Jorge Miyoshi Mikami Alonso
+	\item Luis Manuel Reyes Colín
+\end{itemize}
+
+\section*{Antecedentes}
+
+Los primeros modelos que tratan la opinión de un grupo como algo que evoluciona en el tiempo
+aparecen a mediados del siglo XX, y desde los ochenta la física estadística se sumó al tema bajo
+el nombre de sociofísica. El punto de partida de nuestro proyecto es más reciente: en el año 2000
+Deffuant y Weisbuch propusieron el modelo de confianza acotada \cite{Deffuant2000}, donde cada
+persona tiene una opinión entre 0 y 1 y dos personas solo se influyen si sus opiniones están más
+cerca que un umbral $\epsilon$. Con $\epsilon$ chica la población se fragmenta en grupos que ya no
+se hablan; con $\epsilon$ grande todos terminan de acuerdo.
+
+Pansanella \emph{et al.} \cite{Pansanella2023} le agregan a ese modelo el sesgo algorítmico (un
+parámetro $\gamma$ que hace más probable que te toque hablar con quien ya piensa como tú) y medios
+masivos, que meten como agentes ``tercos'' con opinión fija a los que cada agente se asoma con
+probabilidad $p_m$. Prueban cuatro escenarios (un medio moderado, uno extremista, dos polarizados
+y uno balanceado) y sus resultados son contraintuitivos: una población abierta es \emph{más} fácil
+de manipular, un mensaje moderado repetido demasiado favorece minorías extremistas, y el sesgo
+algorítmico acaba protegiendo a la población de radicalizarse por completo.
+
+Yin \emph{et al.} \cite{Yin2025} atacan lo que el trabajo anterior no toca: la conducta. Arman una
+red de dos capas, una de opinión sobre la economía con un modelo de umbral y otra de consumo tipo
+SIS (Susceptible--Infectado--Susceptible, el modelo epidémico donde la conducta se contagia entre
+vecinos pero no deja inmunidad, así que cada persona puede activarse y volver a dejar de consumir
+cuantas veces sea), acopladas en ambos sentidos: más consumo baja el umbral para volverse
+optimista, y más optimismo activa más consumo. Esa retroalimentación hace que el sistema salte de golpe entre un
+estado pesimista de bajo consumo y uno optimista de alto consumo.
+
+Lo que notamos pendiente es que Pansanella \emph{et al.} trabajan en campo medio, sin estructura de
+red y sin ninguna consecuencia conductual de la opinión, mientras que Yin \emph{et al.} usan
+opiniones binarias, sin confianza acotada ni mensaje externo. Sobre todo, ninguno de los dos
+convierte su barrido de parámetros en algo que sirva para decidir de antemano. Nuestro aporte es
+juntar ambos modelos en un esquema de dos capas y usar aprendizaje automático para entrenar un
+predictor que, a partir de las condiciones iniciales y las características del mensaje, anticipe
+si la campaña será favorable o contraproducente.
+
+\section*{Objetivos de investigación}
+
+\subsection*{Objetivo general}
+
+Investigar en qué condiciones una campaña masiva logra mover la opinión de una población hacia la
+postura que promueve y en cuáles resulta inútil o contraproducente, usando un modelo de confianza
+acotada con sesgo algorítmico y medios masivos acoplado a una segunda capa de conducta, con el fin
+de construir un criterio que permita anticipar si conviene lanzarla.
+
+\subsection*{Objetivos particulares}
+
+\begin{enumerate}
+	\item Hacer la búsqueda bibliográfica y redactar los antecedentes del proyecto.
+
+	\item Programar el modelo de confianza acotada con sesgo algorítmico y medios, y validarlo
+	      replicando los resultados de Pansanella \emph{et al.}
+
+	\item Construir las redes de simulación y agregar la segunda capa de conducta, definiendo
+	      cómo se retroalimentan entre sí.
+
+	\item Recorrer el espacio de parámetros ($\epsilon$, $\gamma$, $p_m$, $x_m$) y calcular las
+	      métricas del estado final: número de grupos de opinión, tamaño del grupo alrededor de
+	      la campaña y nivel de polarización.
+
+	\item Clasificar los estados finales y entrenar un modelo que prediga si la campaña resulta
+	      favorable o contraproducente.
+
+	\item Analizar los resultados y comparar las conclusiones con los artículos de referencia.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\setlength{\itemsep}{3pt}
+
+\bibitem{Deffuant2000}
+G. Deffuant, D. Neau, F. Amblard and G. Weisbuch, \emph{Mixing beliefs among interacting agents}, Advances in Complex Systems \textbf{3} (2000) 87--98.
+
+\bibitem{Pansanella2023}
+V. Pansanella, A. Sîrbu, J. Kertesz and G. Rossetti, \emph{Mass media impact on opinion evolution in biased digital environments: a bounded confidence model}, Scientific Reports \textbf{13} (2023) 14600.
+
+\bibitem{Yin2025}
+L. Yin, J. Chen, F. Gao and X. Wu, \emph{Coevolution of opinion and consumption behavior under a two-layer network framework}, Physica A \textbf{680} (2025) 131020.
+
+\end{thebibliography}
+
+\end{document}

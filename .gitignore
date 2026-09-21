@@ -31,3 +31,5 @@ results/sweeps/*
 
 # Report PDFs are build artifacts; coursework PDFs are versioned
 report/**/*.pdf
+
+papers/*
